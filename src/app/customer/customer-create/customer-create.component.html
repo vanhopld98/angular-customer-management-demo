@@ -1,8 +1,40 @@
-<form>
-  <input type="text" placeholder="Id"  name="id" [(ngModel)]="customer.id"><br>
-  <input type="text" placeholder="First Name:" name="fistName" [(ngModel)]="customer.firstName"><br>
-  <input type="text" placeholder="Last Name:"  name="lastName" [(ngModel)]="customer.lastName"><br>
-  <input type="text" placeholder="Address:" name="address" [(ngModel)]="customer.address"><br>
-  <input type="text" placeholder="Phone" name="phone" [(ngModel)]="customer.phone"><br>
-  <button (click)="submit()">Add</button>
-</form>
+<div class="card text-dark bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-header">Create new Customer</div>
+  <div class="card-body">
+    <form #formCreateCustomer="ngForm" (ngSubmit)="formCreateCustomer.valid && submit(formCreateCustomer)">
+      <div class="mb-3">
+        <input type="text"
+               [ngClass]="[(id.valid && id.touched || id.dirty) ? 'form-control is-valid' :'form-control is-invalid']"
+               [(ngModel)]="customer.id" required #id="ngModel" name="id" ngModel
+               placeholder="ID:">
+        <ng-container *ngIf="id.invalid && (id.dirty || id.touched) || formCreateCustomer.submitted">
+          <div *ngIf="id.errors?.required" class="invalid-feedback">
+            Trường này không được để trống
+          </div>
+        </ng-container>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" [(ngModel)]="customer.firstName" required #firstName="ngModel"
+               name="firstName" ngModel
+               placeholder="Firstname:">
+        <ng-container *ngIf="firstName.invalid && firstName.dirty && firstName.touched || formCreateCustomer.submitted">
+          <p *ngIf="firstName.errors?.required" style="color: red">Trường này không được để trống</p>
+        </ng-container>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" [(ngModel)]="customer.lastName" name="lastName" placeholder="Lastname:">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" [(ngModel)]="customer.address" name="address" placeholder="Address:">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" #phone="ngModel" ngModel pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+               [(ngModel)]="customer.phone" name="phone" placeholder="Phone:">
+        <ng-container *ngIf="phone.invalid && phone.dirty || phone.touched">
+          <p style="color: red" *ngIf="phone?.errors.pattern">Nhập sai định dạng số điện thoại</p>
+        </ng-container>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

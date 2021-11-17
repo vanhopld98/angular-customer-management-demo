@@ -18,8 +18,8 @@ export class CustomerCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  submit() {
-    this.eventEmitter.emit(this.customer);
-    this.customer = {};
+  submit(customerForm) {
+    this.eventEmitter.emit(customerForm.value);
+    customerForm.reset();
   }
 }

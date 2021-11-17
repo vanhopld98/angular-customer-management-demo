@@ -1,0 +1,23 @@
+<div class="card text-dark bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-header">Create new Customer</div>
+  <div class="card-body">
+    <form #formEditProduct="ngForm" (ngSubmit)="submitEdit(formEditProduct)">
+      <div class="mb-3">
+        <input type="text" class="form-control" [(ngModel)]="customer.id" name="id" placeholder="ID:">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" [(ngModel)]="customer.firstName" name="firstName"placeholder="Firstname:">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" [(ngModel)]="customer.lastName" name="lastName" placeholder="Lastname:">
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" [(ngModel)]="customer.address" name="address" placeholder="Address:">
+      </div><div class="mb-3">
+      <input type="text" class="form-control" [(ngModel)]="customer.phone" name="phone" placeholder="Phone:">
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
