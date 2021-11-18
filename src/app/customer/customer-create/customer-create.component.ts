@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Customer} from '../../customer';
+import {CustomerService} from '../../service/customer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-create',
@@ -7,19 +9,17 @@ import {Customer} from '../../customer';
   styleUrls: ['./customer-create.component.css']
 })
 export class CustomerCreateComponent implements OnInit {
-  @Output()
-  eventEmitter: EventEmitter<Customer> = new EventEmitter<Customer>();
-  @Input()
-  customer: Customer = {};
 
-  constructor() {
+  constructor(private customerService: CustomerService,
+              private router: Router) {
   }
 
   ngOnInit() {
   }
 
   submit(customerForm) {
-    this.eventEmitter.emit(customerForm.value);
+    this.customerService.createCustomer(customerForm.value);
     customerForm.reset();
+    this.router.navigate(['/customers']);
   }
 }

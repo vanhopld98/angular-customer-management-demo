@@ -1,41 +1,75 @@
-<div class="container">
-  <div class="card text-dark bg-light mb-3">
-    <div class="card-header">Customer Management</div>
-    <div class="card-body">
-      <div>
-        <button style="float: right" class="btn btn-primary"
-                (click)="showFormCreate()">{{isFormCreate ? 'Hide' : 'Create'}}</button>
-        <app-customer-create (eventEmitter)="addNewCustomer($event)" *ngIf="isFormCreate"
-                             style="float: right"></app-customer-create>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Customer Management</h1>
       </div>
-      <table class="table table-hover table-bordered">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Id</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Address</th>
-          <th scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let customer of customers; index as i">
-          <th scope="row">{{i + 1}}</th>
-          <td>{{customer.id}}</td>
-          <td>{{customer.firstName}}</td>
-          <td>{{customer.lastName}}</td>
-          <td>{{customer.address}}</td>
-          <td>{{customer.phone}}</td>
-          <td>
-            <button class="btn btn-primary" (click)="showFormEdit(i)">Edit</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <app-customer-edit style="float: right" (eventEmitter)="editCustomer($event)" [customer]="customers[index]"
-                         *ngIf="isFormEdit"></app-customer-edit>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a routerLink="/customers">Home</a></li>
+          <li class="breadcrumb-item active">Customers</li>
+        </ol>
+      </div>
     </div>
   </div>
 </div>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- TABLE-->
+        <div class="card">
+          <div class="card-header border-transparent">
+            <h3 class="card-title">Customers List</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table m-0">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Id</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Phone</th>
+                  <th>Address</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let customer of customers; index as i">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{customer.id}}</td>
+                  <td>{{customer.firstName}}</td>
+                  <td>{{customer.lastName}}</td>
+                  <td>{{customer.phone}}</td>
+                  <td>{{customer.address}}</td>
+                  <td>
+                      <button class="btn btn-app" routerLink="customers/edit/{{customer.id}}">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer clearfix">
+            <button class="btn btn-sm btn-info float-left"
+            routerLink="/customers/create">Create New Customer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

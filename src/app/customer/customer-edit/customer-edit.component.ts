@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Customer} from '../../customer';
+import {CustomerService} from '../../service/customer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-edit',
@@ -7,19 +9,12 @@ import {Customer} from '../../customer';
   styleUrls: ['./customer-edit.component.css']
 })
 export class CustomerEditComponent implements OnInit {
-  @Input()
-  customer: Customer = {};
-  @Output()
-  eventEmitter: EventEmitter<Customer> = new EventEmitter<Customer>();
 
-  constructor() {
+  constructor(private customerService: CustomerService,
+              private router: Router) {
   }
 
   ngOnInit() {
-  }
-
-  submitEdit(customerFormEdit) {
-    this.eventEmitter.emit(customerFormEdit.value);
   }
 
 }

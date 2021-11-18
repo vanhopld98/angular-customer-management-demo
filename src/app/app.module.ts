@@ -7,13 +7,19 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
 import {FormsModule} from '@angular/forms';
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
+import { SidebarLeftComponent } from './sidebar-left/sidebar-left.component';
+import { SidebarRightComponent } from './sidebar-right/sidebar-right.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerListComponent,
     CustomerCreateComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    SidebarLeftComponent,
+    SidebarRightComponent,
+    FooterComponent,
   ],
     imports: [
         BrowserModule,
