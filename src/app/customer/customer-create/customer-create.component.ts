@@ -31,7 +31,7 @@ export class CustomerCreateComponent implements OnInit {
       toast: true,
       position: 'top-end',
       icon: 'success',
-      titleText: ' Tạo Mới Thành Công',
+      titleText: 'Tạo Mới Thành Công',
       showConfirmButton: false,
       timer: 3000
     });

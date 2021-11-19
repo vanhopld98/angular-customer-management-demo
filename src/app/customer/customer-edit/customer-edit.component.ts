@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Customer} from '../../customer';
 import {CustomerService} from '../../service/customer.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import Swal from 'sweetalert2/src/sweetalert2.js';
 
 @Component({
   selector: 'app-customer-edit',
@@ -29,6 +30,18 @@ export class CustomerEditComponent implements OnInit {
   submitEdit(formEditCustomer) {
     this.customerService.update(this.id, formEditCustomer.value).subscribe(() => {
       this.router.navigate(['/customers']);
+      this.sweetAlert();
+    });
+  }
+
+  sweetAlert() {
+    Swal.fire({
+      toast: true,
+      position: 'top-right',
+      icon: 'success',
+      titleText: 'Cập Nhật Thành Công',
+      showConfirmButton: false,
+      timer: 3000
     });
   }
 }

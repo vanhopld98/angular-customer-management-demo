@@ -1,4 +1,3 @@
-<!-- Content Header (Page header) -->
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -19,54 +18,81 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <!-- TABLE-->
         <div class="card">
           <div class="card-header border-transparent">
             <h3 class="card-title">Customers List</h3>
             <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
+              <button class="btn btn-sm btn-info"
+                      routerLink="/customers/create">Create New Customer
               </button>
             </div>
           </div>
           <div class="card-body p-0">
-            <div class="table-responsive">
+            <div class="table-responsive table-bordered ">
               <table class="table m-0">
                 <thead>
-                <tr>
+                <tr class="table-light">
                   <th>STT</th>
                   <th>Id</th>
                   <th>First Name</th>
                   <th>Last Name</th>
                   <th>Phone</th>
                   <th>Address</th>
-                  <th>Action</th>
+                  <th scope="row" colspan="2">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let customer of customers; index as i">
-                    <th scope="row">{{i + 1}}</th>
-                    <td>{{customer.id}}</td>
-                    <td>{{customer.firstName}}</td>
-                    <td>{{customer.lastName}}</td>
-                    <td>{{customer.phone}}</td>
-                    <td>{{customer.address}}</td>
-                    <td>
-                        <button class="btn btn-app" style="padding: 0" routerLink="/customers/edit/{{customer.id}}">
-                          <i class="far fa-edit"></i>
-                        </button>
-                    </td>
-                  </tr>
+                <tr *ngFor="let customer of customers; index as i">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{customer.id}}</td>
+                  <td>{{customer.firstName}}</td>
+                  <td>{{customer.lastName}}</td>
+                  <td>{{customer.phone}}</td>
+                  <td>{{customer.address}}</td>
+                  <td>
+                    <button class="btn btn-block btn-primary" style="padding: 0"
+                            routerLink="/customers/edit/{{customer.id}}">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <button type="button"
+                            class="btn btn-block btn-danger"
+                            data-toggle="modal"
+                            data-target="#modal-delete-customer"
+                            style="padding: 0;color: white"
+                            (click)="findCustomerById(customer.id);findNameInModal(customer.id)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
                 </tbody>
               </table>
             </div>
           </div>
           <div class="card-footer clearfix">
-            <button class="btn btn-sm btn-info float-left"
-            routerLink="/customers/create">Create New Customer</button>
+
+          </div>
+<!--          Modal Delete-->
+          <div class="modal fade" id="modal-delete-customer">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Delete Customer</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure delete customer : <i><span id="name"></span></i> ?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="submitDelete()">Delete
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
