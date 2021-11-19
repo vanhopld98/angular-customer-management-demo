@@ -18,8 +18,9 @@ export class CustomerCreateComponent implements OnInit {
   }
 
   submit(customerForm) {
-    this.customerService.createCustomer(customerForm.value);
-    customerForm.reset();
-    this.router.navigate(['/customers']);
+    this.customerService.createCustomer(customerForm.value).subscribe(() => {
+      customerForm.reset();
+      this.router.navigate(['/customers']);
+    });
   }
 }

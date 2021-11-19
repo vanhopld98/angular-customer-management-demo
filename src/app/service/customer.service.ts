@@ -1,40 +1,33 @@
 import {Injectable} from '@angular/core';
 import {Customer} from '../customer';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  customers: Customer[] = [
-    {
-      id: 1,
-      firstName: 'Nguyễn Văn',
-      lastName: 'Hợp',
-      phone: '0836886899',
-      address: 'Liên Đàm'
-    }
-  ];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  getAll() {
-    return this.customers;
+  getAll(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`http://localhost:8080/customers`);
   }
 
-  getById(index: number) {
-    return this.customers[index];
+  getById(id: number): Observable<Customer> {
+    return this.http.get<Customer>(`http://localhost:8080/customers/${id}`);
   }
 
-  createCustomer(customer: Customer) {
-    this.customers.push(customer);
+  createCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(`http://localhost:8080/customers`, customer);
   }
 
-  update(index: number, customer: Customer) {
-    this.customers[index] = customer;
+  update(id: number, customer: Customer): Observable<Customer> {
+    return this.http.put<Customer>(`http://localhost:8080/customers/${id}`, customer);
   }
 
-  delete(index: number) {
-    this.customers.slice(index, 1);
+  delete(id: number): Observable<Customer> {
+    return this.http.delete<Customer>(`http://localhost:8080/customers/${id}`);
   }
 }

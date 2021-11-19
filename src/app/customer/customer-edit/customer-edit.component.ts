@@ -13,10 +13,11 @@ export class CustomerEditComponent implements OnInit {
   index;
 
   constructor(private customerService: CustomerService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      this.customer.id = +paramMap.get('id');
-      this.index = this.customerService.getById(this.customer.id);
+      this.index = +paramMap.get('id');
+      // this.customer = this.customerService.getById(this.index);
     });
   }
 
@@ -26,5 +27,6 @@ export class CustomerEditComponent implements OnInit {
 
   submitEdit(formEditCustomer) {
     this.customerService.update(this.index, formEditCustomer.value);
+    this.router.navigate(['/customers']);
   }
 }

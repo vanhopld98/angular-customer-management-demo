@@ -11,9 +11,11 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[] = [];
 
   constructor(private customerService: CustomerService) {
-    this.customers = customerService.getAll();
   }
 
   ngOnInit() {
+    this.customerService.getAll().subscribe((data: any) => {
+      this.customers = data.content;
+    });
   }
 }
