@@ -10,23 +10,25 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class CustomerEditComponent implements OnInit {
   customer: Customer = {};
-  index;
+  id: number;
 
   constructor(private customerService: CustomerService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      this.index = +paramMap.get('id');
-      // this.customer = this.customerService.getById(this.index);
+      this.id = +paramMap.get('id');
     });
   }
 
-
   ngOnInit() {
+    this.customerService.getById(this.id).subscribe((data) => {
+      this.customer = data;
+    });
   }
 
   submitEdit(formEditCustomer) {
-    this.customerService.update(this.index, formEditCustomer.value);
-    this.router.navigate(['/customers']);
+    this.customerService.update(this.id, formEditCustomer.value).subscribe(() => {
+      this.router.navigate(['/customers']);
+    });
   }
 }
