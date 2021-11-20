@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Customer} from '../../customer';
-import {CustomerService} from '../../service/customer.service';
+import {CustomerService} from '../../service/customer/customer.service';
 import Swal from 'sweetalert2/src/sweetalert2.js';
-import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-customer-list',

@@ -11,6 +11,8 @@ import {SidebarLeftComponent} from './sidebar-left/sidebar-left.component';
 import {SidebarRightComponent} from './sidebar-right/sidebar-right.component';
 import {FooterComponent} from './footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
     SidebarLeftComponent,
     SidebarRightComponent,
     FooterComponent,
+    ProductListComponent,
+    CategoryListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Customer} from '../../customer';
-import {CustomerService} from '../../service/customer.service';
+import {CustomerService} from '../../service/customer/customer.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import Swal from 'sweetalert2/src/sweetalert2.js';
 

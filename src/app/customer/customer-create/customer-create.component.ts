@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerService} from '../../service/customer.service';
+import {CustomerService} from '../../service/customer/customer.service';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2/src/sweetalert2.js';
 
