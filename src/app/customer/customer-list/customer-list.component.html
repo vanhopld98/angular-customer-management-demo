@@ -41,31 +41,33 @@
                   <th scope="row" colspan="2">Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr *ngFor="let customer of customers; index as i">
-                  <th scope="row">{{i + 1}}</th>
-                  <td>{{customer.id}}</td>
-                  <td>{{customer.firstName}}</td>
-                  <td>{{customer.lastName}}</td>
-                  <td>{{customer.phone}}</td>
-                  <td>{{customer.address}}</td>
-                  <td>
-                    <button class="btn btn-block btn-primary" style="padding: 0"
-                            routerLink="/customers/edit/{{customer.id}}">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                  </td>
-                  <td>
-                    <button type="button"
-                            class="btn btn-block btn-danger"
-                            data-toggle="modal"
-                            data-target="#modal-delete-customer"
-                            style="padding: 0;color: white"
-                            (click)="findCustomerById(customer.id);findNameInModal(customer.id)">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
+                <tbody id="body">
+                <ng-container *ngIf="(customers.length > 0)">
+                  <tr *ngFor="let customer of customers; index as i">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{customer.id}}</td>
+                    <td>{{customer.firstName}}</td>
+                    <td>{{customer.lastName}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>
+                      <button class="btn btn-block btn-primary" style="padding: 0"
+                              routerLink="/customers/edit/{{customer.id}}">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button type="button"
+                              class="btn btn-block btn-danger"
+                              data-toggle="modal"
+                              data-target="#modal-delete-customer"
+                              style="padding: 0;color: white"
+                              (click)="findCustomerById(customer.id);findNameInModal(customer.id)">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </ng-container>
                 </tbody>
               </table>
             </div>
@@ -73,7 +75,7 @@
           <div class="card-footer clearfix">
 
           </div>
-<!--          Modal Delete-->
+          <!--          Modal Delete-->
           <div class="modal fade" id="modal-delete-customer">
             <div class="modal-dialog">
               <div class="modal-content">

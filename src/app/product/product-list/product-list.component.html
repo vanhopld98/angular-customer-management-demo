@@ -50,7 +50,7 @@
                   <td>{{product.quantity}}</td>
                   <td>{{product.price}}</td>
                   <td>{{product.description}}</td>
-                  <td>{{product.category.name}}</td>
+                  <td>{{product.category?.name}}</td>
                   <td>
                     <button class="btn btn-block btn-primary" style="padding: 0"
                             routerLink="/products/edit/{{product.id}}">
@@ -86,7 +86,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>Are you sure delete customer : <i><span id="name"></span></i> ?</p>
+                  <p>Are you sure delete product : <i><span id="name"></span></i> ?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

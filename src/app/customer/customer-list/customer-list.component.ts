@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Customer} from '../../customer';
 import {CustomerService} from '../../service/customer/customer.service';
 import Swal from 'sweetalert2/src/sweetalert2.js';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -13,10 +14,15 @@ export class CustomerListComponent implements OnInit {
   id;
   customer;
 
-  constructor(private customerService: CustomerService) {
+  constructor(private customerService: CustomerService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    this.getAllCustomer();
+  }
+
+  getAllCustomer() {
     this.customerService.getAll().subscribe((data: any) => {
       this.customers = data.content;
     });
@@ -35,10 +41,8 @@ export class CustomerListComponent implements OnInit {
 
   submitDelete() {
     this.customerService.delete(this.id).subscribe(() => {
-      this.customerService.getAll().subscribe((data: any) => {
-        this.customers = data.content;
-        this.sweetAlertDelete();
-      });
+      this.getAllCustomer();
+      this.sweetAlertDelete();
     });
   }
 
