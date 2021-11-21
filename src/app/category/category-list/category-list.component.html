@@ -1,0 +1,96 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Category Management</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a routerLink="/customers">Home</a></li>
+          <li class="breadcrumb-item active">Category</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header border-transparent">
+            <h3 class="card-title">Categories List</h3>
+            <div class="card-tools">
+              <button class="btn btn-sm btn-info"
+                      routerLink="/categories/create">Create New Category
+              </button>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive table-bordered ">
+              <table class="table m-0">
+                <thead>
+                <tr class="table-light">
+                  <th>STT</th>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th scope="row" colspan="2">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let category of categories; index as i">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{category.id}}</td>
+                  <td>{{category.name}}</td>
+                  <td style="text-align: center">
+                    <button class="btn btn-block btn-primary"
+                            style="padding: 0;max-width: 5rem;"
+                            routerLink="/categories/edit/{{category.id}}">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                  <td style="text-align: center">
+                    <button type="button"
+                            class="btn btn-block btn-danger"
+                            data-toggle="modal"
+                            data-target="#modal-delete-customer"
+                            style="padding: 0;color: white;max-width: 5rem"
+                            (click)="findCategoryById(category.id);findNameInModal(category.id)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer clearfix">
+
+          </div>
+          <!--          Modal Delete-->
+          <div class="modal fade" id="modal-delete-customer">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Delete Customer</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure delete customer : <i><span id="name"></span></i> ?</p>
+                </div>
+                <div class="modal-footer justify-content-between">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="submitDelete()">Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
