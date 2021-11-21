@@ -8,7 +8,6 @@ import {CustomerCreateComponent} from './customer/customer-create/customer-creat
 import {FormsModule} from '@angular/forms';
 import {CustomerEditComponent} from './customer/customer-edit/customer-edit.component';
 import {SidebarLeftComponent} from './sidebar-left/sidebar-left.component';
-import {SidebarRightComponent} from './sidebar-right/sidebar-right.component';
 import {FooterComponent} from './footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ProductListComponent } from './product/product-list/product-list.component';
@@ -25,7 +24,6 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
     CustomerCreateComponent,
     CustomerEditComponent,
     SidebarLeftComponent,
-    SidebarRightComponent,
     FooterComponent,
     ProductListComponent,
     CategoryListComponent,

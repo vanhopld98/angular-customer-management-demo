@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../service/category/category.service';
 import {Router} from '@angular/router';
 import {Category} from '../../category';
+import Swal from 'sweetalert2/src/sweetalert2.js';
 
 @Component({
   selector: 'app-category-create',
@@ -22,6 +23,18 @@ export class CategoryCreateComponent implements OnInit {
     this.categoryService.create(formCreateCategory.value).subscribe((data) => {
       this.category = data;
       this.router.navigate(['/categories']);
+      this.sweetAlert();
+    });
+  }
+
+  sweetAlert() {
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      icon: 'success',
+      titleText: 'Xóa Thành Công',
+      showConfirmButton: false,
+      timer: 3000
     });
   }
 }

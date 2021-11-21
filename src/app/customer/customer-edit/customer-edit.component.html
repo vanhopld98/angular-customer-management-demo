@@ -56,8 +56,7 @@
                            required
                            #lastName="ngModel"
                            [(ngModel)]="customer.lastName"
-                           name="lastName"
-                           class="form-control">
+                           name="lastName">
                     <ng-container
                       *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || formEditCustomer.submitted)">
                       <p *ngIf="lastName.errors?.required" class="invalid-tooltip">

@@ -54,9 +54,9 @@
                     <button type="button"
                             class="btn btn-block btn-danger"
                             data-toggle="modal"
-                            data-target="#modal-delete-customer"
+                            data-target="#modal-delete-category"
                             style="padding: 0;color: white;max-width: 5rem"
-                            (click)="findCategoryById(category.id);findNameInModal(category.id)">
+                            (click)="findCategoryById(category.id)">
                       <i class="fas fa-trash"></i>
                     </button>
                   </td>
@@ -69,17 +69,17 @@
 
           </div>
           <!--          Modal Delete-->
-          <div class="modal fade" id="modal-delete-customer">
+          <div class="modal fade" id="modal-delete-category">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title">Delete Customer</h4>
+                  <h4 class="modal-title">Delete Category</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>Are you sure delete customer : <i><span id="name"></span></i> ?</p>
+                  <p>Are you sure delete category : <i><span id="name"></span></i> ?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
