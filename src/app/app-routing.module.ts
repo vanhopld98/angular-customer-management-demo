@@ -5,6 +5,10 @@ import {CustomerCreateComponent} from './customer/customer-create/customer-creat
 import {CustomerEditComponent} from './customer/customer-edit/customer-edit.component';
 import {ProductListComponent} from './product/product-list/product-list.component';
 import {CategoryListComponent} from './category/category-list/category-list.component';
+import {CategoryCreateComponent} from './category/category-create/category-create.component';
+import {CategoryEditComponent} from './category/category-edit/category-edit.component';
+import {ProductCreateComponent} from './product/product-create/product-create.component';
+import {ProductEditComponent} from './product/product-edit/product-edit.component';
 
 
 const routes: Routes = [
@@ -25,9 +29,25 @@ const routes: Routes = [
     component: ProductListComponent
   },
   {
+    path: 'products/create',
+    component: ProductCreateComponent
+  },
+  {
+    path: 'products/edit/:id',
+    component: ProductEditComponent
+  },
+  {
     path: 'categories',
     component: CategoryListComponent
   },
+  {
+    path: 'categories/create',
+    component: CategoryCreateComponent
+  },
+  {
+    path: 'categories/edit/:id',
+    component: CategoryEditComponent
+  }
 ];
 
 @NgModule({
