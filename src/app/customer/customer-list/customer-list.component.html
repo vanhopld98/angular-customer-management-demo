@@ -79,12 +79,22 @@
             </div>
           </div>
           <div class="card-footer clearfix">
-            <button (click)="previousPage()">
-              <i class="fas fa-long-arrow-alt-left"></i>
-            </button>
-            <button (click)="nextPage()">
-              <i class="fas fa-long-arrow-alt-right"></i>
-            </button>
+            <nav aria-label="Page navigation example" style="float: right">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" (click)="previousPage()" *ngIf="hasPrevious()" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item" *ngFor="let page of totalPage">
+                  <a class="page-link" (click)="choosePage(page)">{{page + 1}}</a></li>
+                <li class="page-item">
+                  <a class="page-link" (click)="nextPage()" *ngIf="hasNext(totalPage.length)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
           <!--          Modal Delete-->
           <div class="modal fade" id="modal-delete-customer">

@@ -28,7 +28,9 @@ export class CustomerListComponent implements OnInit {
   getAllCustomer() {
     this.customerService.getAll(this.page).subscribe((data: any) => {
       this.customers = data.content;
-      this.totalPage = data.totalPages;
+      for (let i = 0; i < data.totalPages; i++) {
+        this.totalPage.push(i);
+      }
     });
   }
 

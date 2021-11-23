@@ -31,9 +31,8 @@
           </div>
           <div class="card-body p-0">
             <div class="table-responsive">
-              <div class="card text-dark mb-3">
-                <form #formCreateCustomer="ngForm" (ngSubmit)="formCreateCustomer.valid && submit(formCreateCustomer)"
-                      class="dark-mode">
+              <div class="card mb-3 card-body">
+                <form #formCreateCustomer="ngForm" (ngSubmit)="formCreateCustomer.valid && submit(formCreateCustomer)">
                   <div class="mb-3 position-relative">
                     <label for="firstname" class="form-label">Firstname:</label>
                     <input type="text"
