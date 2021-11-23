@@ -1,5 +1,10 @@
 <div class="content-header">
   <div class="container-fluid">
+    <div class="float-sm-right">
+      <form>
+        <input type="search" [(ngModel)]="search" name="q" placeholder="Search Anything" class="form-control">
+      </form>
+    </div>
     <div class="row mb-2">
       <div class="col-sm-6">
         <h1 class="m-0">Customer Management</h1>
@@ -22,7 +27,7 @@
           <div class="card-header border-transparent">
             <h3 class="card-title">Customers List</h3>
             <div class="card-tools">
-              <button class="btn btn-sm btn-info"
+              <button class="btn btn-sm btn-success"
                       routerLink="/customers/create">Create New Customer
               </button>
             </div>
@@ -35,7 +40,7 @@
                   <th>STT</th>
                   <th>Id</th>
                   <th>First Name</th>
-                  <th>Last Name</th>
+                  <th (click)="sort('lastName')">Last Name</th>
                   <th>Phone</th>
                   <th>Address</th>
                   <th scope="row" colspan="2">Action</th>
@@ -43,7 +48,8 @@
                 </thead>
                 <tbody id="body">
                 <ng-container *ngIf="(customers.length > 0)">
-                  <tr *ngFor="let customer of customers; index as i">
+                  <tr
+                    *ngFor="let customer of customers | orderBy:key:caseInsensitive | filter:search; index as i">
                     <th scope="row">{{i + 1}}</th>
                     <td>{{customer.id}}</td>
                     <td>{{customer.firstName}}</td>
@@ -73,7 +79,12 @@
             </div>
           </div>
           <div class="card-footer clearfix">
-
+            <button (click)="previousPage()">
+              <i class="fas fa-long-arrow-alt-left"></i>
+            </button>
+            <button (click)="nextPage()">
+              <i class="fas fa-long-arrow-alt-right"></i>
+            </button>
           </div>
           <!--          Modal Delete-->
           <div class="modal fade" id="modal-delete-customer">

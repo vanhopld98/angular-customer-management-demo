@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+        import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../service/category/category.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Category} from '../../category';

@@ -10,7 +10,6 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
   styleUrls: ['./category-create.component.css']
 })
 export class CategoryCreateComponent implements OnInit {
-  category: Category = {};
 
   constructor(private categoryService: CategoryService,
               private router: Router) {
@@ -20,8 +19,7 @@ export class CategoryCreateComponent implements OnInit {
   }
 
   submit(formCreateCategory) {
-    this.categoryService.create(formCreateCategory.value).subscribe((data) => {
-      this.category = data;
+    this.categoryService.create(formCreateCategory.value).subscribe(() => {
       this.router.navigate(['/categories']);
       this.sweetAlert();
     });

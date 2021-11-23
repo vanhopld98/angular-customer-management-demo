@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Product} from '../../product';
 import {CategoryService} from '../../service/category/category.service';
 import {Category} from '../../category';
+import Swal from 'sweetalert2/src/sweetalert2.js';
 
 @Component({
   selector: 'app-product-create',
@@ -27,13 +28,31 @@ export class ProductCreateComponent implements OnInit {
 
   submit(formCreateProduct) {
     this.product = formCreateProduct.value;
+    if (this.product.category === undefined) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please Select Category!',
+      });
+    }
     this.product.category = {
       id: this.product.category
     };
     this.productService.create(this.product).subscribe((data) => {
-      console.log(data);
       this.product = data;
       this.router.navigate(['/products']);
+      this.sweetAlertSuccess();
+    });
+  }
+
+  sweetAlertSuccess() {
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      icon: 'success',
+      titleText: 'Tạo Mới Thành Công',
+      showConfirmButton: false,
+      timer: 3000
     });
   }
 }

@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Customer} from '../../customer';
 import {CustomerService} from '../../service/customer/customer.service';
 import Swal from 'sweetalert2/src/sweetalert2.js';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-list',
@@ -13,9 +12,13 @@ export class CustomerListComponent implements OnInit {
   customers: Customer[] = [];
   id;
   customer;
+  search;
+  page = 0;
+  caseInsensitive: boolean;
+  key = '';
+  totalPage = [];
 
-  constructor(private customerService: CustomerService,
-              private router: Router) {
+  constructor(private customerService: CustomerService) {
   }
 
   ngOnInit() {
@@ -23,8 +26,9 @@ export class CustomerListComponent implements OnInit {
   }
 
   getAllCustomer() {
-    this.customerService.getAll().subscribe((data: any) => {
+    this.customerService.getAll(this.page).subscribe((data: any) => {
       this.customers = data.content;
+      this.totalPage = data.totalPages;
     });
   }
 
@@ -46,6 +50,33 @@ export class CustomerListComponent implements OnInit {
     });
   }
 
+  sort(key) {
+    this.key = key;
+    this.caseInsensitive = !this.caseInsensitive;
+  }
+
+  nextPage() {
+    this.page++;
+    this.customerService.getAll(this.page).subscribe((data: any) => {
+      this.customers = data.content;
+    });
+  }
+
+  previousPage() {
+    this.page--;
+    this.customerService.getAll(this.page).subscribe((data: any) => {
+      this.customers = data.content;
+    });
+  }
+
+  hasPrevious() {
+    return this.page > 0;
+  }
+
+  hasNext(totalPage) {
+    return this.page < totalPage - 1;
+  }
+
   sweetAlertDelete() {
     Swal.fire({
       toast: true,
@@ -54,6 +85,13 @@ export class CustomerListComponent implements OnInit {
       titleText: 'Xóa Thành Công',
       showConfirmButton: false,
       timer: 3000
+    });
+  }
+
+  choosePage(page: number) {
+    this.page = page;
+    this.customerService.getAll(this.page).subscribe((data: any) => {
+      this.customers = data.content;
     });
   }
 }

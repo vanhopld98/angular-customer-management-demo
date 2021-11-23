@@ -1,1 +1,115 @@
-<p>product-edit works!</p>
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Product Management</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a routerLink="/customers">Home</a></li>
+          <li class="breadcrumb-item active">Product Create</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <div class="card mb-3 card-success">
+                <div class="card-header">
+                  <h3 class="card-title">Product Edit</h3>
+                </div>
+                <div class="card-body">
+                  <form #formEditProduct="ngForm" (ngSubmit)="formEditProduct.valid && submitEdit(formEditProduct)">
+                    <div class="mb-3 position-relative">
+                      <label for="name" class="form-label">Name:</label>
+                      <input type="text"
+                             id="name"
+                             [ngClass]="[(name.valid && (name.touched || name.dirty)) ? 'form-control is-valid' :((name.dirty || name.touched || formEditProduct.submitted)? 'form-control is-invalid':'form-control')]"
+                             required #name="ngModel"
+                             name="name" [ngModel]="product.name"
+                             placeholder="Aa">
+                      <ng-container
+                        *ngIf="name.invalid && (name.dirty || name.touched || formEditProduct.submitted)">
+                        <p *ngIf="name.errors?.required" class="invalid-tooltip">
+                          Trường này không được để trống
+                        </p>
+                      </ng-container>
+                    </div>
+                    <div class="mb-3 position-relative">
+                      <label for="quantity" class="form-label">Quantity:</label>
+                      <input type="text"
+                             id="quantity"
+                             [ngClass]="[(quantity.valid && (quantity.touched || quantity.dirty)) ? 'form-control is-valid' :((quantity.touched || quantity.dirty || formEditProduct.submitted)?'form-control is-invalid':'form-control')]"
+                             required
+                             #quantity="ngModel" [ngModel]="product.quantity"
+                             name="quantity"
+                             class="form-control"
+                             placeholder="0-9"
+                             pattern="^[0-9]*$">
+                      <ng-container
+                        *ngIf="quantity.invalid && (quantity.dirty || quantity.touched || formEditProduct.submitted)">
+                        <div *ngIf="quantity.errors?.required" class="invalid-tooltip">
+                          Trường này không được để trống
+                        </div>
+                        <div class="invalid-tooltip" *ngIf="quantity.errors?.pattern">
+                          Trường này chỉ được nhập số từ 0-9
+                        </div>
+                      </ng-container>
+                    </div>
+                    <div class="mb-3 position-relative">
+                      <label for="price" class="form-label">Price:</label>
+                      <input type="text"
+                             id="price"
+                             [ngClass]="[(price.valid && (price.touched || price.dirty)) ? 'form-control is-valid' :((price.touched || price.dirty || formEditProduct.submitted)?'form-control is-invalid':'form-control')]"
+                             required
+                             #price="ngModel" [ngModel]="product.price"
+                             name="price"
+                             class="form-control"
+                             placeholder="0-9"
+                             pattern="^[0-9]*$">
+                      <ng-container
+                        *ngIf="price.invalid && (price.dirty || price.touched || formEditProduct.submitted)">
+                        <div *ngIf="price.errors?.required" class="invalid-tooltip">
+                          Trường này không được để trống
+                        </div>
+                        <div class="invalid-tooltip" *ngIf="price.errors?.pattern">
+                          Trường này chỉ được nhập số từ 0-9
+                        </div>
+                      </ng-container>
+                    </div>
+                    <div class="mb-3 position-relative">
+                      <label for="description" class="form-label">Description:</label>
+                      <textarea id="description" class="form-control" [(ngModel)]="product.description" name="description"
+                                placeholder="Aa"></textarea>
+                    </div>
+                    <div class="mb-3 position-relative">
+                      <label for="category">Category</label>
+                      <select class="form-control" [(ngModel)]="product.category.id" name="category" id="category"
+                              style="width: 100%;">
+                        <option *ngFor="let category of categories;"
+                                value="{{category.id}}">
+                          {{category.name}}
+                        </option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-success" style="margin: 5px">Create</button>
+                    <button type="button" class="btn btn-outline-danger" style="margin: 5px" routerLink="/products">
+                      Cancel
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

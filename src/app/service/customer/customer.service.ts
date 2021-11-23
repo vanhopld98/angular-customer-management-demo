@@ -11,12 +11,16 @@ export class CustomerService {
   constructor(private http: HttpClient) {
   }
 
-  getAll(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`http://localhost:8080/customers`);
+  getAll(page: number): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`http://localhost:8080/customers?page=${page}`);
   }
 
   getById(id: number): Observable<Customer> {
     return this.http.get<Customer>(`http://localhost:8080/customers/${id}`);
+  }
+
+  search(q: string): Observable<Customer> {
+    return this.http.get<Customer>(`http://localhost:8080/customers?q=${q}`);
   }
 
   createCustomer(customer: Customer): Observable<Customer> {

@@ -31,8 +31,8 @@
           </div>
           <div class="card-body p-0">
             <div class="table-responsive">
-              <div class="card text-dark mb-3">
-                <form #formEditCategory="ngForm" class="dark-mode" (ngSubmit)="formEditCategory.valid && submitEdit(formEditCategory)">
+              <div class="card mb-3">
+                <form #formEditCategory="ngForm" (ngSubmit)="formEditCategory.valid && submitEdit(formEditCategory)">
                   <div class="mb-3 position-relative">
                     <label for="name" class="form-label">Name:</label>
                     <input type="text"

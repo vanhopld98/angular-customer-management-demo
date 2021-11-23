@@ -10,12 +10,16 @@ import {CustomerEditComponent} from './customer/customer-edit/customer-edit.comp
 import {SidebarLeftComponent} from './sidebar-left/sidebar-left.component';
 import {FooterComponent} from './footer/footer.component';
 import {HttpClientModule} from '@angular/common/http';
-import { ProductListComponent } from './product/product-list/product-list.component';
-import { CategoryListComponent } from './category/category-list/category-list.component';
-import { CategoryCreateComponent } from './category/category-create/category-create.component';
-import { CategoryEditComponent } from './category/category-edit/category-edit.component';
-import { ProductCreateComponent } from './product/product-create/product-create.component';
-import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import {ProductListComponent} from './product/product-list/product-list.component';
+import {CategoryListComponent} from './category/category-list/category-list.component';
+import {CategoryCreateComponent} from './category/category-create/category-create.component';
+import {CategoryEditComponent} from './category/category-edit/category-edit.component';
+import {ProductCreateComponent} from './product/product-create/product-create.component';
+import {ProductEditComponent} from './product/product-edit/product-edit.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {Ng2OrderModule} from 'ng2-order-pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,11 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    NoopAnimationsModule,
+    NgxPaginationModule,
+    Ng2OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
