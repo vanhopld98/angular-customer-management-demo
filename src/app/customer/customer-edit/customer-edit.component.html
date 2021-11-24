@@ -19,8 +19,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <!-- TABLE-->
-        <div class="card">
+        <div class="card-success">
           <div class="card-header border-transparent">
             <h3 class="card-title">Customers edit</h3>
             <div class="card-tools">
@@ -29,72 +28,70 @@
               </button>
             </div>
           </div>
-          <div class="card-body p-0">
-            <div class="table-responsive">
               <div class="card mb-3">
-                <form #formEditCustomer="ngForm" (ngSubmit)="formEditCustomer.valid && submitEdit(formEditCustomer)">
-                  <div class="mb-3 position-relative">
-                    <label for="firstname" class="form-label">Firstname:</label>
-                    <input type="text"
-                           id="firstname"
-                           [ngClass]="[(firstName.valid && (firstName.touched || firstName.dirty)) ? 'form-control is-valid' :((firstName.dirty || firstName.touched || formEditCustomer.submitted)? 'form-control is-invalid':'form-control')]"
-                           required #firstName="ngModel"
-                           name="firstName"
-                           [ngModel]="customer.firstName">
-                    <ng-container
-                      *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || formEditCustomer.submitted)">
-                      <p *ngIf="firstName.errors?.required" class="invalid-tooltip">
-                        Trường này không được để trống
-                      </p>
-                    </ng-container>
-                  </div>
-                  <div class="mb-3 position-relative">
-                    <label for="lastname" class="form-label">Lastname:</label>
-                    <input type="text"
-                           id="lastname"
-                           [ngClass]="[(lastName.valid && (lastName.touched || lastName.dirty)) ? 'form-control is-valid' :((lastName.touched || lastName.dirty || formEditCustomer.submitted)?'form-control is-invalid':'form-control')]"
-                           required
-                           #lastName="ngModel"
-                           [(ngModel)]="customer.lastName"
-                           name="lastName">
-                    <ng-container
-                      *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || formEditCustomer.submitted)">
-                      <p *ngIf="lastName.errors?.required" class="invalid-tooltip">
-                        Trường này không được để trống
-                      </p>
-                    </ng-container>
-                  </div>
-                  <div class="mb-3 position-relative">
-                    <label for="avatar">Avatar:</label>
-                    <input type="file" class="form-control" id="avatar" ngModel (change)="handleFileInput($event)" name="avatar">
-                  </div>
-                  <div class="mb-3">
-                    <label for="address" class="form-label">Address:</label>
-                    <input type="text" id="address" class="form-control" [(ngModel)]="customer.address" name="address" placeholder="Address:">
-                  </div>
-                  <div class="mb-3 position-relative">
-                    <label for="phone" class="form-label">Phone:</label>
-                    <input type="text"
-                           id="phone"
-                           [ngClass]="[(phone.valid && (phone.touched || phone.dirty)) ? 'form-control is-valid' :((phone.touched || phone.dirty || formEditCustomer.submitted)?'form-control is-invalid':'form-control')]"
-                           class="form-control" required #phone="ngModel"
-                           [(ngModel)]="customer.phone"
-                           pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
-                           name="phone">
-                    <ng-container
-                      *ngIf="phone.invalid && (phone.dirty || phone.touched || formEditCustomer.submitted)">
-                      <div class="invalid-tooltip" *ngIf="phone?.errors.pattern">Nhập sai định dạng số điện thoại</div>
-                      <div class="invalid-tooltip" *ngIf="phone?.errors.required">Trường này không được để trống</div>
-                    </ng-container>
-                  </div>
-                  <button type="submit" class="btn btn-success" style="margin: 5px">Save</button>
-                  <button type="button" class="btn btn-outline-danger" style="margin: 5px" routerLink="/customers">Cancel</button>
-                </form>
+                <div class="card-body">
+                  <form #formEditCustomer="ngForm" (ngSubmit)="formEditCustomer.valid && submitEdit(formEditCustomer)">
+                    <div class="mb-3 position-relative">
+                      <label for="firstname" class="form-label">Firstname:</label>
+                      <input type="text"
+                             id="firstname"
+                             [ngClass]="[(firstName.valid && (firstName.touched || firstName.dirty)) ? 'form-control is-valid' :((firstName.dirty || firstName.touched || formEditCustomer.submitted)? 'form-control is-invalid':'form-control')]"
+                             required #firstName="ngModel"
+                             name="firstName"
+                             [ngModel]="customer.firstName">
+                      <ng-container
+                        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || formEditCustomer.submitted)">
+                        <p *ngIf="firstName.errors?.required" class="invalid-tooltip">
+                          Trường này không được để trống
+                        </p>
+                      </ng-container>
+                    </div>
+                    <div class="mb-3 position-relative">
+                      <label for="lastname" class="form-label">Lastname:</label>
+                      <input type="text"
+                             id="lastname"
+                             [ngClass]="[(lastName.valid && (lastName.touched || lastName.dirty)) ? 'form-control is-valid' :((lastName.touched || lastName.dirty || formEditCustomer.submitted)?'form-control is-invalid':'form-control')]"
+                             required
+                             #lastName="ngModel"
+                             [(ngModel)]="customer.lastName"
+                             name="lastName">
+                      <ng-container
+                        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || formEditCustomer.submitted)">
+                        <p *ngIf="lastName.errors?.required" class="invalid-tooltip">
+                          Trường này không được để trống
+                        </p>
+                      </ng-container>
+                    </div>
+                    <div class="mb-3 position-relative">
+                      <label for="avatar">Avatar:</label>
+                      <input type="file" class="form-control" id="avatar" ngModel (change)="handleFileInput($event)" name="avatar">
+                    </div>
+                    <div class="mb-3">
+                      <label for="address" class="form-label">Address:</label>
+                      <input type="text" id="address" class="form-control" [(ngModel)]="customer.address" name="address" placeholder="Address:">
+                    </div>
+                    <div class="mb-3 position-relative">
+                      <label for="phone" class="form-label">Phone:</label>
+                      <input type="text"
+                             id="phone"
+                             [ngClass]="[(phone.valid && (phone.touched || phone.dirty)) ? 'form-control is-valid' :((phone.touched || phone.dirty || formEditCustomer.submitted)?'form-control is-invalid':'form-control')]"
+                             class="form-control" required #phone="ngModel"
+                             [(ngModel)]="customer.phone"
+                             pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+                             name="phone">
+                      <ng-container
+                        *ngIf="phone.invalid && (phone.dirty || phone.touched || formEditCustomer.submitted)">
+                        <div class="invalid-tooltip" *ngIf="phone?.errors.pattern">Nhập sai định dạng số điện thoại</div>
+                        <div class="invalid-tooltip" *ngIf="phone?.errors.required">Trường này không được để trống</div>
+                      </ng-container>
+                    </div>
+                    <button type="submit" class="btn btn-success" style="margin: 5px">Save</button>
+                    <button type="button" class="btn btn-outline-danger" style="margin: 5px" routerLink="/customers">Cancel</button>
+                  </form>
+                </div>
               </div>
-            </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </section>
