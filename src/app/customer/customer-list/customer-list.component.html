@@ -39,6 +39,7 @@
                 <tr class="table-light">
                   <th>STT</th>
                   <th>Id</th>
+                  <th>Avatar</th>
                   <th>First Name</th>
                   <th (click)="sort('lastName')">Last Name</th>
                   <th>Phone</th>
@@ -52,6 +53,7 @@
                     *ngFor="let customer of customers | orderBy:key:caseInsensitive | filter:search; index as i">
                     <th scope="row">{{i + 1}}</th>
                     <td>{{customer.id}}</td>
+                    <td><img src="http://localhost:8080/{{customer.avatar}}" style="width: 192px;height: 108px"></td>
                     <td>{{customer.firstName}}</td>
                     <td>{{customer.lastName}}</td>
                     <td>{{customer.phone}}</td>

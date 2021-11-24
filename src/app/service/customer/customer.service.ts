@@ -23,8 +23,8 @@ export class CustomerService {
     return this.http.get<Customer>(`http://localhost:8080/customers?q=${q}`);
   }
 
-  createCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(`http://localhost:8080/customers`, customer);
+  createCustomer(formData: FormData): Observable<Customer> {
+    return this.http.post<Customer>(`http://localhost:8080/customers`, formData);
   }
 
   update(id: number, customer: Customer): Observable<Customer> {

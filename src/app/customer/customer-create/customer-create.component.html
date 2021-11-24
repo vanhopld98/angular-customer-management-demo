@@ -34,9 +34,13 @@
               <div class="card mb-3 card-body">
                 <form #formCreateCustomer="ngForm" (ngSubmit)="formCreateCustomer.valid && submit(formCreateCustomer)">
                   <div class="mb-3 position-relative">
-                    <label for="firstname" class="form-label">Firstname:</label>
+                    <label for="avatar">Avatar:</label>
+                    <input type="file" class="form-control" id="avatar" ngModel (change)="handleFileInput($event)" name="avatar">
+                  </div>
+                  <div class="mb-3 position-relative">
+                    <label for="firstName" class="form-label">Firstname:</label>
                     <input type="text"
-                           id="firstname"
+                           id="firstName"
                            [ngClass]="[(firstName.valid && (firstName.touched || firstName.dirty)) ? 'form-control is-valid' :((firstName.dirty || firstName.touched || formCreateCustomer.submitted)? 'form-control is-invalid':'form-control')]"
                            required #firstName="ngModel"
                            name="firstName" ngModel

@@ -10,6 +10,7 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
   styleUrls: ['./customer-create.component.css']
 })
 export class CustomerCreateComponent implements OnInit {
+  avatar;
 
   constructor(private customerService: CustomerService,
               private router: Router) {
@@ -19,8 +20,14 @@ export class CustomerCreateComponent implements OnInit {
   }
 
   submit(customerForm) {
-    this.customerService.createCustomer(customerForm.value).subscribe(() => {
-      customerForm.reset();
+    const formData = new FormData();
+    formData.append('avatar', this.avatar);
+    formData.append('firstName', customerForm.value.firstName);
+    formData.append('lastName', customerForm.value.lastName);
+    formData.append('description', customerForm.value.description);
+    formData.append('phone', customerForm.value.phone);
+    formData.append('address', customerForm.value.address);
+    this.customerService.createCustomer(formData).subscribe(() => {
       this.router.navigate(['/customers']);
       this.sweetAlert();
     });
@@ -35,5 +42,9 @@ export class CustomerCreateComponent implements OnInit {
       showConfirmButton: false,
       timer: 3000
     });
+  }
+
+  handleFileInput(event) {
+    this.avatar = (event.target).files[0];
   }
 }
