@@ -9,7 +9,7 @@ import {FormsModule} from '@angular/forms';
 import {CustomerEditComponent} from './customer/customer-edit/customer-edit.component';
 import {SidebarLeftComponent} from './sidebar-left/sidebar-left.component';
 import {FooterComponent} from './footer/footer.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ProductListComponent} from './product/product-list/product-list.component';
 import {CategoryListComponent} from './category/category-list/category-list.component';
 import {CategoryCreateComponent} from './category/category-create/category-create.component';
@@ -20,6 +20,9 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {Ng2OrderModule} from 'ng2-order-pipe';
+import {LoginComponent} from './login/login.component';
+import {JwtInterceptor} from './login/helper/jwt-Interceptor';
+import {ErrorInterceptor} from './login/helper/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import {Ng2OrderModule} from 'ng2-order-pipe';
     CategoryEditComponent,
     ProductCreateComponent,
     ProductEditComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,10 @@ import {Ng2OrderModule} from 'ng2-order-pipe';
     NgxPaginationModule,
     Ng2OrderModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

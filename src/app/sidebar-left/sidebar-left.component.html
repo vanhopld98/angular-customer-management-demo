@@ -5,9 +5,11 @@
       src="https://scontent.fhan3-5.fna.fbcdn.net/v/t1.6435-9/125504962_1006879166459415_3553322319061061535_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=4tRWWy5xM3oAX9kJa39&tn=jTCR5G-_Q-eiltdC&_nc_ht=scontent.fhan3-5.fna&oh=824449daaf70e3b42e43037feab61c71&oe=61BB3856"
       class="img-circle elevation-2" alt="User Image">
   </div>
-  <div class="info">
-    <a href="http://fb.com/vanhopld98" class="d-block">Văn Hợp</a>
-  </div>
+  <ng-container *ngIf="currentUser">
+    <div class="info">
+      <a href="http://fb.com/vanhopld98" class="d-block">{{currentUser.username}}</a>
+    </div>
+  </ng-container>
 </div>
 
 <!-- SidebarSearch Form -->

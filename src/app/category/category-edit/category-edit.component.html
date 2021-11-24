@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-md-12">
         <!-- TABLE-->
-        <div class="card">
+        <div class="card-success">
           <div class="card-header border-transparent">
             <h3 class="card-title">Category Edit</h3>
             <div class="card-tools">
@@ -32,25 +32,27 @@
           <div class="card-body p-0">
             <div class="table-responsive">
               <div class="card mb-3">
-                <form #formEditCategory="ngForm" (ngSubmit)="formEditCategory.valid && submitEdit(formEditCategory)">
-                  <div class="mb-3 position-relative">
-                    <label for="name" class="form-label">Name:</label>
-                    <input type="text"
-                           id="name"
-                           [ngClass]="[(name.valid && (name.touched || name.dirty)) ? 'form-control is-valid' :((name.dirty || name.touched || formEditCategory.submitted)? 'form-control is-invalid':'form-control')]"
-                           required #name="ngModel"
-                           name="name"
-                           [ngModel]="category.name">
-                    <ng-container
-                      *ngIf="name.invalid && (name.dirty || name.touched || formEditCategory.submitted)">
-                      <p *ngIf="name.errors?.required" class="invalid-tooltip">
-                        Trường này không được để trống
-                      </p>
-                    </ng-container>
-                  </div>
-                  <button type="submit" class="btn btn-success" style="margin: 5px">Save</button>
-                  <button type="button" class="btn btn-outline-danger" style="margin: 5px" routerLink="/categories">Cancel</button>
-                </form>
+                <div class="card-body">
+                  <form #formEditCategory="ngForm" (ngSubmit)="formEditCategory.valid && submitEdit(formEditCategory)">
+                    <div class="mb-3 position-relative">
+                      <label for="name" class="form-label">Name:</label>
+                      <input type="text"
+                             id="name"
+                             [ngClass]="[(name.valid && (name.touched || name.dirty)) ? 'form-control is-valid' :((name.dirty || name.touched || formEditCategory.submitted)? 'form-control is-invalid':'form-control')]"
+                             required #name="ngModel"
+                             name="name"
+                             [ngModel]="category.name">
+                      <ng-container
+                        *ngIf="name.invalid && (name.dirty || name.touched || formEditCategory.submitted)">
+                        <p *ngIf="name.errors?.required" class="invalid-tooltip">
+                          Trường này không được để trống
+                        </p>
+                      </ng-container>
+                    </div>
+                    <button type="submit" class="btn btn-success" style="margin: 5px">Save</button>
+                    <button type="button" class="btn btn-outline-danger" style="margin: 5px" routerLink="/categories">Cancel</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

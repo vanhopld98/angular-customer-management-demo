@@ -20,6 +20,15 @@
       </li>
     </ul>
     <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" routerLink="/login" (click)="authenticationService.logout()"
+           role="button">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </a>
+      </li>
+    </ul>
   </nav>
   <!-- /.navbar -->
   <!-- Main Sidebar Container -->
