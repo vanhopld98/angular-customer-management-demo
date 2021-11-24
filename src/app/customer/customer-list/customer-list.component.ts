@@ -22,11 +22,15 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllCustomer();
+    this.getAllCustomer(0);
   }
 
-  getAllCustomer() {
-    this.customerService.getAll(this.page).subscribe((data: any) => {
+  getAllCustomer(page: number) {
+    if (this.search == null) {
+      this.search = '';
+    }
+    this.customerService.getAll(page, this.search).subscribe((data: any) => {
+      this.totalPage = [];
       this.customers = data.content;
       for (let i = 0; i < data.totalPages; i++) {
         this.totalPage.push(i);
@@ -47,7 +51,7 @@ export class CustomerListComponent implements OnInit {
 
   submitDelete() {
     this.customerService.delete(this.id).subscribe(() => {
-      this.getAllCustomer();
+      this.getAllCustomer(0);
       this.sweetAlertDelete();
     });
   }
@@ -92,8 +96,6 @@ export class CustomerListComponent implements OnInit {
 
   choosePage(page: number) {
     this.page = page;
-    this.customerService.getAll(this.page).subscribe((data: any) => {
-      this.customers = data.content;
-    });
+    // this.getAllCustomer();
   }
 }
