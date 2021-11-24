@@ -63,16 +63,12 @@ export class CustomerListComponent implements OnInit {
 
   nextPage() {
     this.page++;
-    this.customerService.getAll(this.page).subscribe((data: any) => {
-      this.customers = data.content;
-    });
+    this.getAllCustomer(this.page);
   }
 
   previousPage() {
     this.page--;
-    this.customerService.getAll(this.page).subscribe((data: any) => {
-      this.customers = data.content;
-    });
+    this.getAllCustomer(this.page);
   }
 
   hasPrevious() {
@@ -96,6 +92,6 @@ export class CustomerListComponent implements OnInit {
 
   choosePage(page: number) {
     this.page = page;
-    // this.getAllCustomer();
+    this.getAllCustomer(page);
   }
 }
