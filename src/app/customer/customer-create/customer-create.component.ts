@@ -24,7 +24,6 @@ export class CustomerCreateComponent implements OnInit {
     formData.append('avatar', this.avatar);
     formData.append('firstName', customerForm.value.firstName);
     formData.append('lastName', customerForm.value.lastName);
-    formData.append('description', customerForm.value.description);
     formData.append('phone', customerForm.value.phone);
     formData.append('address', customerForm.value.address);
     this.customerService.createCustomer(formData).subscribe(() => {

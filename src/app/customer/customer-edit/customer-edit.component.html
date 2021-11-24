@@ -64,6 +64,10 @@
                       </p>
                     </ng-container>
                   </div>
+                  <div class="mb-3 position-relative">
+                    <label for="avatar">Avatar:</label>
+                    <input type="file" class="form-control" id="avatar" ngModel (change)="handleFileInput($event)" name="avatar">
+                  </div>
                   <div class="mb-3">
                     <label for="address" class="form-label">Address:</label>
                     <input type="text" id="address" class="form-control" [(ngModel)]="customer.address" name="address" placeholder="Address:">

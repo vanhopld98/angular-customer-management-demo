@@ -12,6 +12,7 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
 export class CustomerEditComponent implements OnInit {
   customer: Customer = {};
   id: number;
+  avatar;
 
   constructor(private customerService: CustomerService,
               private activatedRoute: ActivatedRoute,
@@ -28,7 +29,13 @@ export class CustomerEditComponent implements OnInit {
   }
 
   submitEdit(formEditCustomer) {
-    this.customerService.update(this.id, formEditCustomer.value).subscribe(() => {
+    const formData = new FormData();
+    formData.append('avatar', this.avatar);
+    formData.append('firstName', formEditCustomer.value.firstName);
+    formData.append('lastName', formEditCustomer.value.lastName);
+    formData.append('phone', formEditCustomer.value.phone);
+    formData.append('address', formEditCustomer.value.address);
+    this.customerService.update(this.id, formData).subscribe(() => {
       this.router.navigate(['/customers']);
       this.sweetAlert();
     });
@@ -43,5 +50,9 @@ export class CustomerEditComponent implements OnInit {
       showConfirmButton: false,
       timer: 3000
     });
+  }
+
+  handleFileInput(event) {
+    this.avatar = (event.target).files[0];
   }
 }

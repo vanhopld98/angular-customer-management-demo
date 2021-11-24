@@ -27,8 +27,8 @@ export class CustomerService {
     return this.http.post<Customer>(`http://localhost:8080/customers`, formData);
   }
 
-  update(id: number, customer: Customer): Observable<Customer> {
-    return this.http.put<Customer>(`http://localhost:8080/customers/${id}`, customer);
+  update(id: number, formData: FormData): Observable<Customer> {
+    return this.http.put<Customer>(`http://localhost:8080/customers/${id}`, formData);
   }
 
   delete(id: number): Observable<Customer> {
